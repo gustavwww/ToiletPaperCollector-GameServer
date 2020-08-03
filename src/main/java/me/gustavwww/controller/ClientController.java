@@ -5,7 +5,6 @@ import me.gustavwww.db.HttpStatusCode;
 import me.gustavwww.model.IUser;
 import me.gustavwww.model.UserFactory;
 import me.gustavwww.server.ProtocolError;
-import me.gustavwww.server.ProtocolException;
 import me.gustavwww.server.ServerProtocol;
 
 import java.io.BufferedReader;
@@ -20,6 +19,8 @@ public class ClientController implements Runnable {
     private BufferedReader reader;
     private PrintWriter writer;
 
+    private ClientReader clientReader;
+
     private IUser user;
     private int increment = 0;
 
@@ -27,80 +28,64 @@ public class ClientController implements Runnable {
         this.client = client;
     }
 
-    private void initUser() {
+    private void initUser() throws IOException, InterruptedException {
 
-    }
+        String id = clientReader.readId();
 
-    private String readId() {
-
-        try {
-            System.out.println("Waiting for user id...");
-            String input = reader.readLine();
-
-            return ServerProtocol.parseId(input);
-
-        } catch (ProtocolException e) {
-            writer.println(ServerProtocol.writeError(e.getProtocolError()));
-
-        } catch (IOException e) {
-            e.printStackTrace();
+        this.user = getUser(id);
+        if (user == null) {
+            disconnect();
+            return;
         }
 
-        return null;
+        postUser(user, 0);
     }
 
-    private String readNickname() {
+    private void disconnect() {
 
         try {
-            System.out.println("Waiting for user nickname...");
-            String input = reader.readLine();
+            System.out.println("Client disconnected from server: " + client.getInetAddress().getHostAddress());
+            client.close();
+            postUser(user, increment);
 
-            return ServerProtocol.parseNickname(input);
+        } catch (Exception ignored) {}
 
-        } catch (ProtocolException e) {
-            writer.println(ServerProtocol.writeError(e.getProtocolError()));
-            readNickname();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return null;
+        Thread.currentThread().interrupt();
     }
 
-    private IUser getUser(String id) {
+    private IUser getUser(String id) throws IOException, InterruptedException {
 
         try {
-
             return UserFactory.CreateUser(id);
 
         } catch (HttpManagerException e) {
             if (e.getStatusCode() == HttpStatusCode.NOT_FOUND.code) {
                 // User not found, create one.
-                String nick = readNickname();
-                if (nick != null) {
-                    return UserFactory.CreateUser(id, nick, 0);
-                }
+                String nickname = clientReader.readNickname();
+                return UserFactory.CreateUser(id, nickname, 0);
             }
-
-        } catch (Exception e) {
-            e.printStackTrace();
         }
 
         return null;
     }
 
-    private void postUser(IUser user, int increment) {
+    private void postUser(IUser user, int increment) throws IOException, InterruptedException {
 
-        try {
+        IUser postingUser = user;
+        while (true) {
 
-            user.postUser(increment);
+            try {
+                if (postingUser == null) { return; }
 
-        } catch (HttpManagerException e) {
-            writer.println(ServerProtocol.writeError(ProtocolError.INVALID_NICKNAME));
+                postingUser.postUser(increment);
+                return;
 
-        } catch (Exception e) {
-            e.printStackTrace();
+            } catch (HttpManagerException e) {
+                writer.println(ServerProtocol.writeError(ProtocolError.INVALID_NICKNAME));
+                String nickname = clientReader.readNickname();
+                postingUser = UserFactory.CreateUser(user.getId(), nickname, user.getAmount());
+            }
+
         }
 
     }
@@ -112,6 +97,7 @@ public class ClientController implements Runnable {
 
             this.reader = new BufferedReader(new InputStreamReader(client.getInputStream()));
             this.writer = new PrintWriter(client.getOutputStream(), true);
+            this.clientReader = new ClientReader(reader, writer);
 
             initUser();
 
@@ -121,14 +107,16 @@ public class ClientController implements Runnable {
 
                 if (ServerProtocol.parseCount(input)) {
                     increment++;
+                } else if (ServerProtocol.parseCountRequest(input)) {
+                    writer.println(user.getAmount() + increment);
                 }
 
             }
 
-            client.close();
+            disconnect();
 
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            disconnect();
         }
 
 

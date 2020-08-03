@@ -19,7 +19,7 @@ public class HttpManager {
 
     private static final HttpClient httpClient = HttpClient.newBuilder().version(HttpClient.Version.HTTP_2).build();
 
-    public static IUser getUser(String id) throws HttpManagerException, IOException, InterruptedException {
+    public synchronized static IUser getUser(String id) throws HttpManagerException, IOException, InterruptedException {
 
         HttpRequest request = HttpRequest.newBuilder()
                 .GET()
@@ -43,7 +43,7 @@ public class HttpManager {
         throw new HttpManagerException(errorMsg, response.statusCode());
     }
 
-    public static void postUserPaper(IUser user, int increment) throws HttpManagerException, IOException, InterruptedException {
+    public synchronized static void postUserPaper(IUser user, int increment) throws HttpManagerException, IOException, InterruptedException {
 
         Map<String, Object> data = new HashMap<>();
         data.put("id", user.getId());
@@ -51,8 +51,6 @@ public class HttpManager {
         data.put("amount", increment);
 
         String jsonString = new Gson().toJson(data);
-
-        System.out.println(jsonString);
 
         HttpRequest request = HttpRequest.newBuilder()
                 .POST(HttpRequest.BodyPublishers.ofString(jsonString))

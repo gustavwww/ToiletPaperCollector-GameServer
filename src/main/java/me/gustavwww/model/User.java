@@ -2,7 +2,6 @@ package me.gustavwww.model;
 
 import me.gustavwww.db.HttpManager;
 import me.gustavwww.db.HttpManagerException;
-import me.gustavwww.db.HttpStatusCode;
 
 import java.io.IOException;
 

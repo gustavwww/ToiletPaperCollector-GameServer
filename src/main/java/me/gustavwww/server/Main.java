@@ -1,17 +1,16 @@
 package me.gustavwww.server;
 
-import me.gustavwww.db.HttpManager;
-import me.gustavwww.model.UserFactory;
+import java.io.IOException;
 
 public class Main {
 
     public static void main(String[] args) {
 
-//        try {
-//            new GameServer(26000).listen();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+        try {
+            new GameServer(26000).listen();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 
