@@ -2,19 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4ea1a627-5e83-4d26-a0fc-bed82ffe3182" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/me/gustavwww/controller/ClientReader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/me/gustavwww/controller/ClientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/gustavwww/controller/ClientController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/gustavwww/db/HttpManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/gustavwww/db/HttpManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/gustavwww/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/gustavwww/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/gustavwww/server/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/gustavwww/server/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/me/gustavwww/server/ServerProtocol.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/gustavwww/server/ServerProtocol.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/me/gustavwww/controller/ClientController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/gustavwww/controller/ClientController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/gustavwww/db/HttpManager$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/gustavwww/db/HttpManager$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/gustavwww/db/HttpManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/gustavwww/db/HttpManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/gustavwww/model/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/gustavwww/model/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/gustavwww/server/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/gustavwww/server/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/me/gustavwww/server/ServerProtocol.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/gustavwww/server/ServerProtocol.class" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />

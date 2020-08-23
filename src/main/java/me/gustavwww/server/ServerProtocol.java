@@ -32,16 +32,24 @@ public class ServerProtocol {
         return input.equalsIgnoreCase("count");
     }
 
-    public synchronized static boolean parseCountRequest(String input) {
-        return input.equalsIgnoreCase("want:count");
+    public synchronized static boolean parseAmountRequest(String input) {
+        return input.equalsIgnoreCase("want:amount");
     }
 
     public synchronized static String writeError(ProtocolError error) {
         return "error:" + error.msg;
     }
 
+    public synchronized static String writeAmount(int amount) {
+        return "amount:" + amount;
+    }
+
     public synchronized static String writeWant(String input) {
         return "want:" + input;
+    }
+
+    public synchronized static String writeLogged() {
+        return "logged";
     }
 
 }

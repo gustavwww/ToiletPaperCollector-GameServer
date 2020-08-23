@@ -100,6 +100,7 @@ public class ClientController implements Runnable {
             this.clientReader = new ClientReader(reader, writer);
 
             initUser();
+            writer.println(ServerProtocol.writeLogged());
 
             String input;
 
@@ -107,8 +108,8 @@ public class ClientController implements Runnable {
 
                 if (ServerProtocol.parseCount(input)) {
                     increment++;
-                } else if (ServerProtocol.parseCountRequest(input)) {
-                    writer.println(user.getAmount() + increment);
+                } else if (ServerProtocol.parseAmountRequest(input)) {
+                    writer.println(ServerProtocol.writeAmount(user.getAmount() + increment));
                 }
 
             }
