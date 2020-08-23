@@ -105,10 +105,11 @@ public class ClientController implements Runnable {
             String input;
 
             while((input = reader.readLine()) != null) {
+                String trimmed = input.trim();
 
-                if (ServerProtocol.parseCount(input)) {
+                if (ServerProtocol.parseCount(trimmed)) {
                     increment++;
-                } else if (ServerProtocol.parseAmountRequest(input)) {
+                } else if (ServerProtocol.parseAmountRequest(trimmed)) {
                     writer.println(ServerProtocol.writeAmount(user.getAmount() + increment));
                 }
 

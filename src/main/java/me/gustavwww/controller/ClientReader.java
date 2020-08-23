@@ -25,13 +25,15 @@ public class ClientReader {
                 feedBack.println(ServerProtocol.writeWant("id"));
                 System.out.println("Waiting for user id...");
                 String input = reader.readLine();
+                if (input == null) {
+                    throw new IOException();
+                }
+
                 System.out.println(input);
-                return ServerProtocol.parseId(input);
+                return ServerProtocol.parseId(input.trim());
 
             } catch (ProtocolException e) {
                 feedBack.println(e.getProtocolError().msg);
-                readId();
-
             }
 
         }
@@ -46,8 +48,12 @@ public class ClientReader {
                 feedBack.println(ServerProtocol.writeWant("nickname"));
                 System.out.println("Waiting for user nickname...");
                 String input = reader.readLine();
+                if (input == null) {
+                    throw new IOException();
+                }
 
-                return ServerProtocol.parseNickname(input);
+                System.out.println(input);
+                return ServerProtocol.parseNickname(input.trim());
 
             } catch (ProtocolException e) {
                 feedBack.println(e.getProtocolError().msg);

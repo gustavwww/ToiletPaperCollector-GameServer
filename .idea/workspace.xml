@@ -4,9 +4,7 @@
     <list default="true" id="4ea1a627-5e83-4d26-a0fc-bed82ffe3182" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/me/gustavwww/controller/ClientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/gustavwww/controller/ClientController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/gustavwww/server/ServerProtocol.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/gustavwww/server/ServerProtocol.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/gustavwww/controller/ClientController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/gustavwww/controller/ClientController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/gustavwww/server/ServerProtocol.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/gustavwww/server/ServerProtocol.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/gustavwww/controller/ClientReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/gustavwww/controller/ClientReader.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
