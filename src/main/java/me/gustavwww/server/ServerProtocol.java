@@ -44,8 +44,12 @@ public class ServerProtocol {
         return "amount:" + amount;
     }
 
-    public synchronized static String writeWant(String input) {
-        return "want:" + input;
+    public synchronized static String wantId() {
+        return "want:id";
+    }
+
+    public synchronized static String wantNickname() {
+        return "want:nickname";
     }
 
     public synchronized static String writeLogged() {

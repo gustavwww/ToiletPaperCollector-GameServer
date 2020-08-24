@@ -22,7 +22,7 @@ public class ClientReader {
         while (true) {
 
             try {
-                feedBack.println(ServerProtocol.writeWant("id"));
+                feedBack.println(ServerProtocol.wantId());
                 System.out.println("Waiting for user id...");
                 String input = reader.readLine();
                 if (input == null) {
@@ -45,7 +45,7 @@ public class ClientReader {
         while (true) {
 
             try {
-                feedBack.println(ServerProtocol.writeWant("nickname"));
+                feedBack.println(ServerProtocol.wantNickname());
                 System.out.println("Waiting for user nickname...");
                 String input = reader.readLine();
                 if (input == null) {

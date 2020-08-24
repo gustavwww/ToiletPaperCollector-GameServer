@@ -45,8 +45,8 @@ public class ClientController implements Runnable {
 
         try {
             System.out.println("Client disconnected from server: " + client.getInetAddress().getHostAddress());
-            client.close();
             postUser(user, increment);
+            client.close();
 
         } catch (Exception ignored) {}
 
