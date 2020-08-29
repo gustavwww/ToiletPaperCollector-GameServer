@@ -48,7 +48,7 @@ public class HttpManager {
         Map<String, Object> data = new HashMap<>();
         data.put("id", user.getId());
         data.put("nickname", user.getNickname());
-        data.put("amount", increment);
+        data.put("increment", increment);
 
         String jsonString = new Gson().toJson(data);
 
