@@ -1,2 +1,7 @@
-package me.gustavwww.services.protocol;public interface IServerProtocol {
+package me.gustavwww.services.protocol;
+
+public interface IServerProtocol {
+
+    Command parseMessage(String msg);
+    String writeMessage(Command cmd);
 }
