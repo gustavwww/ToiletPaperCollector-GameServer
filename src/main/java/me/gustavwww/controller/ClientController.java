@@ -40,18 +40,6 @@ public class ClientController implements Runnable {
         postUser(user, 0);
     }
 
-    private void disconnect() {
-
-        try {
-            System.out.println("Client disconnected from server: " + client.getInetAddress().getHostAddress());
-            postUser(user, increment);
-            client.close();
-
-        } catch (Exception ignored) {}
-
-        Thread.currentThread().interrupt();
-    }
-
     private IUser getUser(String id) throws IOException, InterruptedException {
 
         try {
@@ -89,6 +77,18 @@ public class ClientController implements Runnable {
 
     }
 
+    private void disconnect() {
+
+        try {
+            System.out.println("Client disconnected from server: " + client.getInetAddress().getHostAddress());
+            postUser(user, increment);
+            client.close();
+
+        } catch (Exception ignored) {}
+
+        Thread.currentThread().interrupt();
+    }
+
     @Override
     public void run() {
 
@@ -115,6 +115,10 @@ public class ClientController implements Runnable {
         }
 
 
+    }
+
+    public void sendTCP(String msg) {
+        writer.println(msg);
     }
 
 

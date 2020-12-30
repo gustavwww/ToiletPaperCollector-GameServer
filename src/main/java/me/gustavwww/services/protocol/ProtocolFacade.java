@@ -1,5 +1,7 @@
 package me.gustavwww.services.protocol;
 
+import java.util.Arrays;
+
 class ProtocolFacade implements IServerProtocol {
 
     private static ProtocolFacade instance = null;
@@ -29,4 +31,10 @@ class ProtocolFacade implements IServerProtocol {
     public synchronized String writeMessage(Command cmd) {
         return protocolWriter.writeMessage(cmd);
     }
+
+    @Override
+    public synchronized String writeError(String msg) {
+        return "error:" + msg;
+    }
+
 }
