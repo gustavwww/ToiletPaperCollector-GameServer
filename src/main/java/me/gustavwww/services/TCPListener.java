@@ -1,4 +1,4 @@
-package me.gustavwww.server;
+package me.gustavwww.services;
 
 import me.gustavwww.controller.ClientController;
 
@@ -6,12 +6,12 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-public class GameServer {
+public class TCPListener {
 
     private ServerSocket server;
     private int port;
 
-    public GameServer(int port) throws IOException {
+    public TCPListener(int port) throws IOException {
         this.server = new ServerSocket(port);
         this.port = port;
     }

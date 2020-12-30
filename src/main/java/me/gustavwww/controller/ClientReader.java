@@ -1,7 +1,7 @@
 package me.gustavwww.controller;
 
-import me.gustavwww.server.ProtocolException;
-import me.gustavwww.server.ServerProtocol;
+import me.gustavwww.services.ProtocolException;
+import me.gustavwww.services.ServerProtocol;
 
 import java.io.BufferedReader;
 import java.io.IOException;

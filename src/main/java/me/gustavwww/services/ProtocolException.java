@@ -1,4 +1,4 @@
-package me.gustavwww.server;
+package me.gustavwww.services;
 
 public class ProtocolException extends Exception {
 
