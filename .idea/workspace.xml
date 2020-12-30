@@ -5,10 +5,32 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4ea1a627-5e83-4d26-a0fc-bed82ffe3182" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/gustavwww/controller/ClientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/gustavwww/controller/ClientController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/gustavwww/services/protocol/IServerProtocol.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/gustavwww/services/protocol/IServerProtocol.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/gustavwww/services/protocol/ProtocolFacade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/gustavwww/services/protocol/ProtocolFacade.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/$PRODUCT_WORKSPACE_FILE$" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/GameServer.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_code_gson_gson_2_8_6.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/GameServer.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/gustavwww/controller/ClientController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/gustavwww/controller/ClientReader.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/gustavwww/db/HttpManager$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/gustavwww/db/HttpManager$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/gustavwww/db/HttpManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/gustavwww/db/HttpManagerException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/gustavwww/db/HttpStatusCode.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/gustavwww/model/IUser.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/gustavwww/model/User.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/gustavwww/model/UserFactory.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/gustavwww/server/GameServer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/gustavwww/server/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/gustavwww/server/ProtocolError.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/gustavwww/server/ProtocolException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/gustavwww/server/ServerProtocol.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
