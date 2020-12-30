@@ -4,7 +4,7 @@ class ProtocolFacade implements IServerProtocol {
 
     private static ProtocolFacade instance = null;
 
-    static ProtocolFacade getInstance() {
+    static synchronized ProtocolFacade getInstance() {
         if (instance == null) {
             instance = new ProtocolFacade();
         }

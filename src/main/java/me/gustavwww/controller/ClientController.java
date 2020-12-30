@@ -4,6 +4,9 @@ import me.gustavwww.db.HttpManagerException;
 import me.gustavwww.db.HttpStatusCode;
 import me.gustavwww.model.IUser;
 import me.gustavwww.model.UserFactory;
+import me.gustavwww.services.protocol.Command;
+import me.gustavwww.services.protocol.IServerProtocol;
+import me.gustavwww.services.protocol.ServerProtocolFactory;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -16,8 +19,6 @@ public class ClientController implements Runnable {
     private Socket client;
     private BufferedReader reader;
     private PrintWriter writer;
-
-    private ClientReader clientReader;
 
     private IUser user;
     private int increment = 0;
@@ -95,21 +96,15 @@ public class ClientController implements Runnable {
 
             this.reader = new BufferedReader(new InputStreamReader(client.getInputStream()));
             this.writer = new PrintWriter(client.getOutputStream(), true);
-            this.clientReader = new ClientReader(reader, writer);
 
-            initUser();
-            writer.println(ServerProtocol.writeLogged());
+            IServerProtocol serverProtocol = ServerProtocolFactory.getServerProtocol();
+            CommandManager cmdManager = new CommandManager(this);
 
             String input;
-
             while((input = reader.readLine()) != null) {
-                String trimmed = input.trim();
 
-                if (ServerProtocol.parseCount(trimmed)) {
-                    increment++;
-                } else if (ServerProtocol.parseAmountRequest(trimmed)) {
-                    writer.println(ServerProtocol.writeAmount(user.getAmount() + increment));
-                }
+                Command cmd = serverProtocol.parseMessage(input);
+                cmdManager.handleCommand(cmd);
 
             }
 

@@ -5,18 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4ea1a627-5e83-4d26-a0fc-bed82ffe3182" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/me/gustavwww/services/protocol/Command.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/me/gustavwww/services/protocol/IServerProtocol.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/me/gustavwww/services/protocol/ProtocolFacade.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/me/gustavwww/services/protocol/ProtocolReader.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/me/gustavwww/services/protocol/ProtocolWriter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/me/gustavwww/controller/CommandManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/me/gustavwww/controller/commandhandlers/AbstractCommandHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/me/gustavwww/controller/commandhandlers/ICommandHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/me/gustavwww/services/protocol/ServerProtocolFactory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/me/gustavwww/controller/ClientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/gustavwww/controller/ClientController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/gustavwww/controller/ClientReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/gustavwww/controller/ClientReader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/me/gustavwww/controller/ServerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/gustavwww/controller/ServerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/gustavwww/services/protocol/ProtocolError.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/gustavwww/services/protocol/ProtocolException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/gustavwww/services/protocol/ServerProtocol.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/gustavwww/services/protocol/ProtocolFacade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/gustavwww/services/protocol/ProtocolFacade.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
