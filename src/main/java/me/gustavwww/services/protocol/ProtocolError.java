@@ -1,4 +1,4 @@
-package me.gustavwww.services;
+package me.gustavwww.services.protocol;
 
 public enum ProtocolError {
     INVALID_ID("Invalid User ID"),

@@ -5,17 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4ea1a627-5e83-4d26-a0fc-bed82ffe3182" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/me/gustavwww/controller/ServerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/me/gustavwww/services/TCPServer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/me/gustavwww/controller/ClientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/gustavwww/controller/ClientController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/me/gustavwww/controller/ClientReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/gustavwww/controller/ClientReader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/gustavwww/server/GameServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/gustavwww/services/TCPListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/gustavwww/server/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/gustavwww/services/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/gustavwww/server/ProtocolError.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/gustavwww/services/ProtocolError.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/gustavwww/server/ProtocolException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/gustavwww/services/ProtocolException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/gustavwww/server/ServerProtocol.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/gustavwww/services/ServerProtocol.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/gustavwww/controller/ServerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/gustavwww/controller/ServerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/gustavwww/services/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/gustavwww/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/gustavwww/services/ProtocolError.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/gustavwww/services/protocol/ProtocolError.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/gustavwww/services/ProtocolException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/gustavwww/services/protocol/ProtocolException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/gustavwww/services/ServerProtocol.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/gustavwww/services/protocol/ServerProtocol.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/gustavwww/services/TCPListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/gustavwww/services/TCPListener.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,9 +24,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="Enum" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -51,7 +50,7 @@
   </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="me.gustavwww.services.Main" />
+      <option name="MAIN_CLASS_NAME" value="me.gustavwww.Main" />
       <module name="GameServer" />
       <extension name="coverage">
         <pattern>

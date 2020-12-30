@@ -4,8 +4,8 @@ import me.gustavwww.db.HttpManagerException;
 import me.gustavwww.db.HttpStatusCode;
 import me.gustavwww.model.IUser;
 import me.gustavwww.model.UserFactory;
-import me.gustavwww.services.ProtocolError;
-import me.gustavwww.services.ServerProtocol;
+import me.gustavwww.services.protocol.ProtocolError;
+import me.gustavwww.services.protocol.ServerProtocol;
 
 import java.io.BufferedReader;
 import java.io.IOException;
