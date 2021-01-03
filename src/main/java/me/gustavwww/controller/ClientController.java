@@ -1,7 +1,6 @@
 package me.gustavwww.controller;
 
 import me.gustavwww.db.HttpManagerException;
-import me.gustavwww.db.HttpStatusCode;
 import me.gustavwww.model.IUser;
 import me.gustavwww.model.UserFactory;
 import me.gustavwww.services.protocol.Command;
@@ -22,7 +21,7 @@ public class ClientController implements Runnable {
 
     private final IServerProtocol protocol;
 
-    private IUser user;
+    private IUser user = null;
     private int increment = 0;
 
     public ClientController(Socket client) {
@@ -30,42 +29,42 @@ public class ClientController implements Runnable {
         protocol = ServerProtocolFactory.getServerProtocol();
     }
 
-    public void increaseCount(int amount) {
+    public synchronized void increaseCount(int amount) {
+        if (user == null) { return; }
         increment += amount;
     }
 
-    public void login(String id, String nickname) throws IOException, InterruptedException {
-        boolean success = false;
+    public synchronized void login(String id) throws IOException, InterruptedException {
 
         try {
-            user = UserFactory.CreateUser(id);
-            success = true;
+            this.user = UserFactory.CreateUser(id);
+            sendTCP("logged");
         } catch (HttpManagerException e) {
-            if (e.getStatusCode() == HttpStatusCode.NOT_FOUND.code) {
-
-                if (nickname == null) {
-                    sendTCP(protocol.writeError(e.getMessage()));
-                }
-
-                user = UserFactory.CreateUser(id, nickname, 0);
-                success = postUser();
-            }
+            sendTCP(protocol.writeError(e.getMessage()));
         }
-        System.out.println("Finished.. " + success);
-        if (success) { sendTCP("logged"); }
     }
 
-    private boolean postUser() throws IOException, InterruptedException {
-        if (user == null) { return false; }
+    public synchronized void signup(String id, String nickname) throws IOException, InterruptedException {
+        IUser user = UserFactory.CreateUser(id, nickname, 0);
 
         try {
-            user.postUser(increment);
-            return true;
+            user.postUser(0);
+            this.user = user;
+            sendTCP("logged");
         } catch (HttpManagerException e) {
             sendTCP(protocol.writeError(e.getMessage()));
         }
 
-        return false;
+    }
+
+    private void postUser() throws IOException, InterruptedException {
+        if (user == null) { return; }
+
+        try {
+            user.postUser(increment);
+        } catch (HttpManagerException e) {
+            sendTCP(protocol.writeError(e.getMessage()));
+        }
     }
 
     private void disconnect() {
@@ -90,12 +89,12 @@ public class ClientController implements Runnable {
 
             CommandManager cmdManager = new CommandManager(this);
 
+            sendTCP("connected");
+
             String input;
             while((input = reader.readLine()) != null) {
-
                 Command cmd = protocol.parseMessage(input);
                 cmdManager.handleCommand(cmd);
-
             }
 
             disconnect();
@@ -107,7 +106,7 @@ public class ClientController implements Runnable {
 
     }
 
-    public void sendTCP(String msg) {
+    public synchronized void sendTCP(String msg) {
         writer.println(msg);
     }
 

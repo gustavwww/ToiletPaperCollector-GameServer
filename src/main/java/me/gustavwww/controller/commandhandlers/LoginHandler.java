@@ -4,6 +4,8 @@ import me.gustavwww.controller.ClientController;
 import me.gustavwww.services.protocol.Command;
 import me.gustavwww.services.protocol.IServerProtocol;
 
+import java.util.Arrays;
+
 public class LoginHandler extends AbstractCommandHandler {
 
     public LoginHandler() {
@@ -27,8 +29,11 @@ public class LoginHandler extends AbstractCommandHandler {
         }
 
         try {
-            client.login(deviceID, nickname);
-
+            if (nickname == null) {
+                client.login(deviceID);
+            } else {
+                client.signup(deviceID, nickname);
+            }
         } catch (Exception e) {
             client.sendTCP(protocol.writeError(e.getMessage()));
         }

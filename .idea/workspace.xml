@@ -5,11 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4ea1a627-5e83-4d26-a0fc-bed82ffe3182" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/test/java/ProtocolTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/ClientTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/TCPClient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/me/gustavwww/controller/ClientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/gustavwww/controller/ClientController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/gustavwww/services/protocol/Command.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/gustavwww/services/protocol/Command.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/gustavwww/controller/ServerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/gustavwww/controller/ServerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/gustavwww/controller/commandhandlers/LoginHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/gustavwww/controller/commandhandlers/LoginHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/TCPTest.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,7 +46,12 @@
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
   </component>
-  <component name="RunManager" selected="JUnit.ProtocolTest">
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="git" />
+    </option>
+  </component>
+  <component name="RunManager" selected="JUnit.ClientTest">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="me.gustavwww.Main" />
       <module name="GameServer" />
@@ -53,6 +61,15 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ClientTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="GameServer" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="ClientTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -68,8 +85,9 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.ProtocolTest" />
+        <item itemvalue="JUnit.ClientTest" />
         <item itemvalue="Application.Main" />
+        <item itemvalue="JUnit.ProtocolTest" />
       </list>
     </recent_temporary>
   </component>

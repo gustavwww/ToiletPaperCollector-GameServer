@@ -21,7 +21,7 @@ public class ServerController implements TCPListener {
 
     @Override
     public void clientConnected(Socket client) {
-        System.out.println("Client connected!");
+        System.out.println("Client connected to server: " + client.getInetAddress().getHostAddress());
         new Thread(new ClientController(client)).start();
     }
 }
