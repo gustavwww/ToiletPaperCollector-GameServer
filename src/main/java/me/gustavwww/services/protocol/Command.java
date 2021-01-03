@@ -5,7 +5,7 @@ public class Command {
     private final String cmd;
     private final String[] args;
 
-    public Command(String cmd, String[] args) {
+    public Command(String cmd, String... args) {
         this.cmd = cmd;
         this.args = args;
     }

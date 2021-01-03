@@ -35,10 +35,11 @@ public class ClientController implements Runnable {
     }
 
     public void login(String id, String nickname) throws IOException, InterruptedException {
+        boolean success = false;
 
         try {
             user = UserFactory.CreateUser(id);
-
+            success = true;
         } catch (HttpManagerException e) {
             if (e.getStatusCode() == HttpStatusCode.NOT_FOUND.code) {
 
@@ -47,21 +48,24 @@ public class ClientController implements Runnable {
                 }
 
                 user = UserFactory.CreateUser(id, nickname, 0);
-                postUser();
+                success = postUser();
             }
         }
-
+        System.out.println("Finished.. " + success);
+        if (success) { sendTCP("logged"); }
     }
 
-    private void postUser() throws IOException, InterruptedException {
-        if (user == null) { return; }
+    private boolean postUser() throws IOException, InterruptedException {
+        if (user == null) { return false; }
 
         try {
             user.postUser(increment);
+            return true;
         } catch (HttpManagerException e) {
             sendTCP(protocol.writeError(e.getMessage()));
         }
 
+        return false;
     }
 
     private void disconnect() {

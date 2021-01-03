@@ -5,11 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4ea1a627-5e83-4d26-a0fc-bed82ffe3182" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/me/gustavwww/controller/commandhandlers/IncreaseHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/me/gustavwww/controller/commandhandlers/LoginHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/ProtocolTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/me/gustavwww/controller/ClientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/gustavwww/controller/ClientController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/gustavwww/controller/CommandManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/gustavwww/controller/CommandManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/gustavwww/services/protocol/Command.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/gustavwww/services/protocol/Command.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,7 +43,7 @@
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JUnit.ProtocolTest">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="me.gustavwww.Main" />
       <module name="GameServer" />
@@ -57,8 +57,18 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="ProtocolTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="GameServer" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="ProtocolTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ProtocolTest" />
         <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
