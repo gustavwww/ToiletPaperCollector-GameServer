@@ -9,7 +9,7 @@ class ProtocolWriter {
         for (String arg : cmd.getArgs()) {
             sb.append(arg).append(",");
         }
-        if (sb.charAt(sb.length() - 1) == ',') {
+        if (sb.charAt(sb.length() - 1) == ',' || sb.charAt(sb.length() - 1) == ':') {
             sb.deleteCharAt(sb.length()-1);
         }
 
