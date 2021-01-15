@@ -38,7 +38,7 @@ public class ClientController implements Runnable {
 
         try {
             this.user = UserFactory.CreateUser(id);
-            sendTCP("logged");
+            sendTCP("logged:" + user.getAmount());
         } catch (HttpManagerException e) {
             sendTCP(protocol.writeError(e.getMessage()));
         }
@@ -50,7 +50,7 @@ public class ClientController implements Runnable {
         try {
             user.postUser(0);
             this.user = user;
-            sendTCP("logged");
+            sendTCP("logged:" + user.getAmount());
         } catch (HttpManagerException e) {
             sendTCP(protocol.writeError(e.getMessage()));
         }
