@@ -8,6 +8,7 @@ public interface IUser {
     String getId();
     String getNickname();
     int getAmount();
+    int getTotalAmount();
 
     void postUser(int increment) throws HttpManagerException, IOException, InterruptedException;
 }

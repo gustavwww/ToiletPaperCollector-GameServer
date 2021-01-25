@@ -4,8 +4,6 @@ import me.gustavwww.controller.ClientController;
 import me.gustavwww.services.protocol.Command;
 import me.gustavwww.services.protocol.IServerProtocol;
 
-import java.util.Arrays;
-
 public class LoginHandler extends AbstractCommandHandler {
 
     public LoginHandler() {

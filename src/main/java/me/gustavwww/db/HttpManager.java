@@ -32,7 +32,7 @@ public class HttpManager {
         Map<String, Object> jsonObj = new Gson().fromJson(response.body(), new TypeToken<HashMap<String, Object>>(){}.getType());
 
         if (response.statusCode() == 200) {
-            return UserFactory.CreateUser(id, jsonObj.get("nickname").toString(), (int) (double) jsonObj.get("amount"));
+            return UserFactory.CreateUser(id, jsonObj.get("nickname").toString(), (int) (double) jsonObj.get("weeklyAmount"), (int) (double) jsonObj.get("amount"));
         }
 
         String errorMsg = "Bad Request";

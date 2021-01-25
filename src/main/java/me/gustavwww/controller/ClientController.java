@@ -38,19 +38,19 @@ public class ClientController implements Runnable {
 
         try {
             this.user = UserFactory.CreateUser(id);
-            sendTCP("logged:" + user.getAmount());
+            sendTCP("logged:" + user.getNickname() + "," + user.getTotalAmount() + "," + user.getAmount());
         } catch (HttpManagerException e) {
             sendTCP(protocol.writeError(e.getMessage()));
         }
     }
 
     public synchronized void signup(String id, String nickname) throws IOException, InterruptedException {
-        IUser user = UserFactory.CreateUser(id, nickname, 0);
+        IUser user = UserFactory.CreateUser(id, nickname, 0, 0);
 
         try {
             user.postUser(0);
             this.user = user;
-            sendTCP("logged:" + user.getAmount());
+            sendTCP("logged:" + user.getNickname() + "," + user.getTotalAmount() + "," + user.getAmount());
         } catch (HttpManagerException e) {
             sendTCP(protocol.writeError(e.getMessage()));
         }
