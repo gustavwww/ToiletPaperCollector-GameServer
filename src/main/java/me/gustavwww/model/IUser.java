@@ -10,5 +10,6 @@ public interface IUser {
     int getAmount();
     int getTotalAmount();
 
-    void postUser(int increment) throws HttpManagerException, IOException, InterruptedException;
+    void increaseCount();
+    void postUser() throws HttpManagerException, IOException, InterruptedException;
 }

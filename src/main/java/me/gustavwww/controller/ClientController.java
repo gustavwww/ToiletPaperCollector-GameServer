@@ -22,16 +22,15 @@ public class ClientController implements Runnable {
     private final IServerProtocol protocol;
 
     private IUser user = null;
-    private int increment = 0;
 
     public ClientController(Socket client) {
         this.client = client;
         protocol = ServerProtocolFactory.getServerProtocol();
     }
 
-    public synchronized void increaseCount(int amount) {
+    public synchronized void increaseCount() {
         if (user == null) { return; }
-        increment += amount;
+        user.increaseCount();
     }
 
     public synchronized void login(String id) throws IOException, InterruptedException {
@@ -48,7 +47,7 @@ public class ClientController implements Runnable {
         IUser user = UserFactory.CreateUser(id, nickname, 0, 0);
 
         try {
-            user.postUser(0);
+            user.postUser();
             this.user = user;
             sendTCP("logged:" + user.getNickname() + "," + user.getTotalAmount() + "," + user.getAmount());
         } catch (HttpManagerException e) {
@@ -61,7 +60,7 @@ public class ClientController implements Runnable {
         if (user == null) { return; }
 
         try {
-            user.postUser(increment);
+            user.postUser();
         } catch (HttpManagerException e) {
             sendTCP(protocol.writeError(e.getMessage()));
         }

@@ -13,7 +13,7 @@ public class IncreaseHandler extends AbstractCommandHandler {
     @Override
     protected void concreteHandle(Command cmd, ClientController client, IServerProtocol protocol) {
         // TODO: Add time checker "middleware" to check for hackers.
-        client.increaseCount(1);
+        client.increaseCount();
     }
 
 

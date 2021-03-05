@@ -11,12 +11,14 @@ class User implements IUser {
     private String nickname;
     private int amount;
     private int totalAmount;
+    private int increment;
 
     User(String id, String nickname, int amount, int totalAmount) {
         this.id = id;
         this.nickname = nickname;
         this.amount = amount;
         this.totalAmount = totalAmount;
+        increment = 0;
     }
 
     @Override
@@ -40,7 +42,12 @@ class User implements IUser {
     }
 
     @Override
-    public void postUser(int increment) throws HttpManagerException, IOException, InterruptedException {
+    public void increaseCount() {
+        increment++;
+    }
+
+    @Override
+    public void postUser() throws HttpManagerException, IOException, InterruptedException {
         HttpManager.postUserPaper(this, increment);
     }
 
