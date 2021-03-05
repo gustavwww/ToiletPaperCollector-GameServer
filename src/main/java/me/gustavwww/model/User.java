@@ -22,6 +22,17 @@ class User implements IUser {
     }
 
     @Override
+    public void increaseCount() {
+        increment += 2*(calculateLevel()-1) + 1;
+    }
+
+    private int calculateLevel() {
+        // y = 150(x-1)^2 + 100(x-1) + 1000
+        // x = -1/3 + sqrt(1/9 - (1000-y)/150) + 1
+        return (int) Math.abs(-1.0/3 + Math.sqrt(1.0/9 - (1000.0-amount)/150)) + 1;
+    }
+
+    @Override
     public String getId() {
         return id;
     }
@@ -39,11 +50,6 @@ class User implements IUser {
     @Override
     public int getTotalAmount() {
         return totalAmount;
-    }
-
-    @Override
-    public void increaseCount() {
-        increment++;
     }
 
     @Override

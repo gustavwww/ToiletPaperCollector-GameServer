@@ -1,6 +1,8 @@
 package me.gustavwww;
 
 import me.gustavwww.controller.ServerController;
+import me.gustavwww.model.IUser;
+import me.gustavwww.model.UserFactory;
 
 import java.io.IOException;
 
