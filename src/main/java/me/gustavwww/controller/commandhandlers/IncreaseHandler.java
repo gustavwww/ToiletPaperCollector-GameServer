@@ -6,13 +6,21 @@ import me.gustavwww.services.protocol.IServerProtocol;
 
 public class IncreaseHandler extends AbstractCommandHandler {
 
+    private static final int HIGH_SEND_RATE = 5000;
+
+    long lastCountTime = 0;
+
     public IncreaseHandler() {
         super("count");
     }
 
     @Override
     protected void concreteHandle(Command cmd, ClientController client, IServerProtocol protocol) {
-        // TODO: Add time checker "middleware" to check for hackers.
+        if (System.currentTimeMillis() - lastCountTime < HIGH_SEND_RATE) {
+            return;
+        }
+
+        lastCountTime = System.currentTimeMillis();
         client.increaseCount();
     }
 
