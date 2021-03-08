@@ -43,23 +43,17 @@ public class HttpManager {
         throw new HttpManagerException(errorMsg, response.statusCode());
     }
 
-    public synchronized static void postUserPaper(IUser user, int increment) throws HttpManagerException, IOException, InterruptedException {
+    public synchronized static void sendPostRequest(String URI_EXT, Map<String, Object> body) throws HttpManagerException, IOException, InterruptedException {
 
-        Map<String, Object> data = new HashMap<>();
-        data.put("id", user.getId());
-        data.put("nickname", user.getNickname());
-        data.put("increment", increment);
-
-        String jsonString = new Gson().toJson(data);
+        String jsonString = new Gson().toJson(body);
 
         HttpRequest request = HttpRequest.newBuilder()
                 .POST(HttpRequest.BodyPublishers.ofString(jsonString))
-                .uri(URI.create(BASE_URI + "/v1/users/"))
+                .uri(URI.create(BASE_URI + URI_EXT))
                 .setHeader("Content-Type", "application/json")
                 .build();
 
         HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
-
         Map<String, Object> jsonObj = new Gson().fromJson(response.body(), new TypeToken<HashMap<String, Object>>(){}.getType());
 
         if (!(response.statusCode() == 200)) {

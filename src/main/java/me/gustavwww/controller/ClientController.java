@@ -1,5 +1,6 @@
 package me.gustavwww.controller;
 
+import me.gustavwww.db.HttpManager;
 import me.gustavwww.db.HttpManagerException;
 import me.gustavwww.model.IUser;
 import me.gustavwww.model.UserFactory;
@@ -12,6 +13,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ClientController implements Runnable {
 
@@ -28,12 +31,12 @@ public class ClientController implements Runnable {
         protocol = ServerProtocolFactory.getServerProtocol();
     }
 
-    public synchronized void increaseCount() {
+    public void increaseCount() {
         if (user == null) { return; }
         user.increaseCount();
     }
 
-    public synchronized void login(String id) throws IOException, InterruptedException {
+    public void login(String id) throws IOException, InterruptedException {
 
         try {
             this.user = UserFactory.CreateUser(id);
@@ -43,13 +46,29 @@ public class ClientController implements Runnable {
         }
     }
 
-    public synchronized void signup(String id, String nickname) throws IOException, InterruptedException {
+    public void signup(String id, String nickname) throws IOException, InterruptedException {
         IUser user = UserFactory.CreateUser(id, nickname, 0, 0);
 
         try {
             user.postUser();
             this.user = user;
             sendTCP("logged:" + user.getNickname() + "," + user.getTotalAmount() + "," + user.getAmount());
+        } catch (HttpManagerException e) {
+            sendTCP(protocol.writeError(e.getMessage()));
+        }
+
+    }
+
+    public void sendFacebookDetails(String f_id, String f_name) throws IOException, InterruptedException {
+        if (user == null) { return; }
+
+        try {
+            Map<String, Object> body = new HashMap<>();
+            body.put("id", user.getId());
+            body.put("f_id", f_id);
+            body.put("f_name", f_name);
+
+            HttpManager.sendPostRequest("/v1/users/setfb/", body);
         } catch (HttpManagerException e) {
             sendTCP(protocol.writeError(e.getMessage()));
         }

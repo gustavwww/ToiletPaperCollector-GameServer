@@ -4,6 +4,8 @@ import me.gustavwww.db.HttpManager;
 import me.gustavwww.db.HttpManagerException;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 class User implements IUser {
 
@@ -54,7 +56,13 @@ class User implements IUser {
 
     @Override
     public void postUser() throws HttpManagerException, IOException, InterruptedException {
-        HttpManager.postUserPaper(this, increment);
+
+        Map<String, Object> body = new HashMap<>();
+        body.put("id", id);
+        body.put("nickname", nickname);
+        body.put("increment", increment);
+
+        HttpManager.sendPostRequest("/v1/users/", body);
     }
 
 
