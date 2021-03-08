@@ -18,6 +18,8 @@ import java.util.Map;
 
 public class ClientController implements Runnable {
 
+    private final ServerController serverController;
+
     private final Socket client;
     private BufferedReader reader;
     private PrintWriter writer;
@@ -26,7 +28,8 @@ public class ClientController implements Runnable {
 
     private IUser user = null;
 
-    public ClientController(Socket client) {
+    public ClientController(ServerController serverController, Socket client) {
+        this.serverController = serverController;
         this.client = client;
         protocol = ServerProtocolFactory.getServerProtocol();
     }
@@ -85,12 +88,13 @@ public class ClientController implements Runnable {
         }
     }
 
-    private void disconnect() {
+    public synchronized void disconnect() {
 
         try {
             System.out.println("Client disconnected from server: " + client.getInetAddress().getHostAddress());
             postUser();
             client.close();
+            serverController.removeConnection(this);
 
         } catch (Exception ignored) {}
 
