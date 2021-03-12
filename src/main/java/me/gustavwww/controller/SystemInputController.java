@@ -19,7 +19,7 @@ public class SystemInputController implements Runnable {
             System.out.print("Command: ");
             String in = s.nextLine();
             switch (in) {
-                case "exit":
+                case "stop":
                     System.out.println("Disconnecting and saving user information...");
                     disconnectClients();
                     System.out.println("Terminating...");
