@@ -18,13 +18,11 @@ public class SystemInputController implements Runnable {
         while (true) {
             System.out.print("Command: ");
             String in = s.nextLine();
-            switch (in) {
-                case "stop":
-                    System.out.println("Disconnecting and saving user information...");
-                    disconnectClients();
-                    System.out.println("Terminating...");
-                    System.exit(0);
-                    break;
+            if (in.equalsIgnoreCase("stop")) {
+                System.out.println("Disconnecting and saving user information...");
+                disconnectClients();
+                System.out.println("Terminating...");
+                System.exit(0);
             }
         }
     }
