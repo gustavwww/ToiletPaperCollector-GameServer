@@ -1,5 +1,6 @@
 package me.gustavwww.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -28,11 +29,10 @@ public class SystemInputController implements Runnable {
     }
 
     private void disconnectClients() {
-        synchronized (connections) {
-            for (ClientController client : connections) {
+        List<ClientController> copyClients = new ArrayList<>(connections);
+            for (ClientController client : copyClients) {
                 client.disconnect();
             }
-        }
     }
 
 
