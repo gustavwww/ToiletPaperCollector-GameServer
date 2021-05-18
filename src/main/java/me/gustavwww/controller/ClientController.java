@@ -2,8 +2,9 @@ package me.gustavwww.controller;
 
 import me.gustavwww.db.HttpManager;
 import me.gustavwww.db.HttpManagerException;
-import me.gustavwww.model.IUser;
-import me.gustavwww.model.UserFactory;
+import me.gustavwww.model.*;
+import me.gustavwww.model.duel.ClientDuelHandler;
+import me.gustavwww.model.duel.DuelController;
 import me.gustavwww.services.protocol.Command;
 import me.gustavwww.services.protocol.IServerProtocol;
 import me.gustavwww.services.protocol.ServerProtocolFactory;
@@ -26,6 +27,7 @@ public class ClientController implements Runnable {
 
     private final IServerProtocol protocol;
 
+    private ClientDuelHandler duelHandler = null;
     private IUser user = null;
 
     public ClientController(ServerController serverController, Socket client) {
@@ -44,6 +46,7 @@ public class ClientController implements Runnable {
         try {
             this.user = UserFactory.CreateUser(id);
             sendTCP("logged:" + user.getNickname() + "," + user.getTotalAmount() + "," + user.getAmount());
+            setupDuelHandler(user);
         } catch (HttpManagerException e) {
             sendTCP(protocol.writeError(e.getMessage()));
         }
@@ -56,6 +59,7 @@ public class ClientController implements Runnable {
             user.postUser();
             this.user = user;
             sendTCP("logged:" + user.getNickname() + "," + user.getTotalAmount() + "," + user.getAmount());
+            setupDuelHandler(user);
         } catch (HttpManagerException e) {
             sendTCP(protocol.writeError(e.getMessage()));
         }
@@ -88,10 +92,16 @@ public class ClientController implements Runnable {
         }
     }
 
+    private void setupDuelHandler(IUser user) {
+        duelHandler = new ClientDuelHandler(this, user);
+        duelHandler.allowRequests();
+    }
+
     public synchronized void disconnect() {
 
         try {
             System.out.println("Client disconnected from server: " + client.getInetAddress().getHostAddress());
+            duelHandler.denyRequests();
             postUser();
             client.close();
             serverController.removeConnection(this);
@@ -132,5 +142,23 @@ public class ClientController implements Runnable {
         writer.println(msg);
     }
 
+    public void sendDuelRequest(String nickname) {
+        if (duelHandler == null) { return; }
+        duelHandler.sendRequest(nickname);
+    }
+
+    public void acceptDuelRequest() {
+        if (duelHandler == null) { return; }
+        duelHandler.acceptRequest();
+    }
+
+    public void declineDuelRequest() {
+        if (duelHandler == null) { return; }
+        duelHandler.declineRequest();
+    }
+
+    public DuelController getDuelController() {
+        return duelHandler.getDuelController();
+    }
 
 }
