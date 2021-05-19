@@ -7,6 +7,7 @@ import java.io.IOException;
 public interface IUser {
     String getId();
     String getNickname();
+    int getCoins();
     int getAmount();
     int getTotalAmount();
 

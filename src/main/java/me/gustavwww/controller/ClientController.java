@@ -45,7 +45,7 @@ public class ClientController implements Runnable {
 
         try {
             this.user = UserFactory.CreateUser(id);
-            sendTCP("logged:" + user.getNickname() + "," + user.getTotalAmount() + "," + user.getAmount());
+            sendTCP("logged:" + user.getNickname() + "," + user.getCoins() + "," + user.getTotalAmount() + "," + user.getAmount());
             setupDuelHandler(user);
         } catch (HttpManagerException e) {
             sendTCP(protocol.writeError(e.getMessage()));
@@ -53,12 +53,12 @@ public class ClientController implements Runnable {
     }
 
     public void signup(String id, String nickname) throws IOException, InterruptedException {
-        IUser user = UserFactory.CreateUser(id, nickname, 0, 0);
+        IUser user = UserFactory.CreateUser(id, nickname, 0, 0, 0);
 
         try {
             user.postUser();
             this.user = user;
-            sendTCP("logged:" + user.getNickname() + "," + user.getTotalAmount() + "," + user.getAmount());
+            sendTCP("logged:" + user.getNickname() + "," + user.getCoins() + "," + user.getTotalAmount() + "," + user.getAmount());
             setupDuelHandler(user);
         } catch (HttpManagerException e) {
             sendTCP(protocol.writeError(e.getMessage()));

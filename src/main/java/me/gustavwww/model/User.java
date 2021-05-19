@@ -11,13 +11,15 @@ class User implements IUser {
 
     private String id;
     private String nickname;
+    private int coins;
     private int amount;
     private int totalAmount;
     private int increment;
 
-    User(String id, String nickname, int amount, int totalAmount) {
+    User(String id, String nickname, int coins, int amount, int totalAmount) {
         this.id = id;
         this.nickname = nickname;
+        this.coins = coins;
         this.amount = amount;
         this.totalAmount = totalAmount;
         increment = 0;
@@ -42,6 +44,11 @@ class User implements IUser {
     @Override
     public String getNickname() {
         return nickname;
+    }
+
+    @Override
+    public int getCoins() {
+        return coins;
     }
 
     @Override
