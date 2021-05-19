@@ -25,9 +25,12 @@ public class MatchManager {
                     DuelRequest request = new DuelRequest(sender, l);
                     l.gotRequest(request);
                     sender.gotRequest(request);
+                    return;
                 }
             }
         }
+
+        sender.requestNotFound(nickname);
     }
 
     public static synchronized MatchManager getInstance() {

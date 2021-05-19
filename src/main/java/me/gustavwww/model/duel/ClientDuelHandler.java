@@ -60,6 +60,11 @@ public class ClientDuelHandler implements IMatchListener {
     }
 
     @Override
+    public void requestNotFound(String nickname) {
+        clientController.sendTCP("duel:response,notfound");
+    }
+
+    @Override
     public void requestCancelled() {
         request = null;
         clientController.sendTCP("duel:response,cancelled");
