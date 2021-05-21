@@ -1,9 +1,6 @@
 package me.gustavwww.controller;
 
-import me.gustavwww.controller.commandhandlers.ICommandHandler;
-import me.gustavwww.controller.commandhandlers.IncreaseHandler;
-import me.gustavwww.controller.commandhandlers.LoginHandler;
-import me.gustavwww.controller.commandhandlers.SetFacebookHandler;
+import me.gustavwww.controller.commandhandlers.*;
 import me.gustavwww.services.protocol.Command;
 import me.gustavwww.services.protocol.IServerProtocol;
 import me.gustavwww.services.protocol.ServerProtocolFactory;
@@ -25,9 +22,11 @@ class CommandManager {
         ICommandHandler loginHandler = new LoginHandler();
         ICommandHandler increaseHandler = new IncreaseHandler();
         ICommandHandler setFacebookHandler = new SetFacebookHandler();
+        ICommandHandler duelHandler = new DuelHandler();
 
         loginHandler.setNext(increaseHandler);
         increaseHandler.setNext(setFacebookHandler);
+        setFacebookHandler.setNext(duelHandler);
 
         firstHandler = loginHandler;
     }

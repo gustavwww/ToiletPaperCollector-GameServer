@@ -38,7 +38,7 @@ public class DuelController implements IDuelListener {
     @Override
     public void gameEnded(IUser winner) {
         this.duel = null;
-        clientController.sendTCP("duel:ended");
+        clientController.sendTCP("duel:ended," + winner.getNickname());
     }
 
     @Override
