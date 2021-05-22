@@ -37,12 +37,10 @@ public class DuelHandler extends AbstractCommandHandler {
                 return;
             }
             if (args[0].equalsIgnoreCase("response")) {
-                switch (args[0]) {
-                    case "accept":
-                        client.acceptDuelRequest();
-                        break;
-                    default:
-                        client.declineDuelRequest();
+                if (args[1].equalsIgnoreCase("accept")) {
+                    client.acceptDuelRequest();
+                } else {
+                    client.declineDuelRequest();
                 }
                 return;
             }

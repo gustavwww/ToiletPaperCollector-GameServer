@@ -61,6 +61,7 @@ public class Duel {
         Timer startTimer = new Timer();
         TimerTask task = new CountdownTimer(COUNTDOWN, () -> {
 
+            startTimer.cancel();
             canClick = true;
             createGameTimer();
             informStarted();
@@ -76,7 +77,12 @@ public class Duel {
     private void createGameTimer() {
 
         Timer gameTimer = new Timer();
-        TimerTask task = new CountdownTimer(GAME_LENGTH, this::endGame, (counter) -> {
+        TimerTask task = new CountdownTimer(GAME_LENGTH, () -> {
+
+            gameTimer.cancel();
+            endGame();
+
+        }, (counter) -> {
 
             informTimerUpdate("gametimer", counter);
         });

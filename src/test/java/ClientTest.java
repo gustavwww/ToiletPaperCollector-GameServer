@@ -43,7 +43,7 @@ public class ClientTest {
 
         client1.sendTCP("login:abcd,gustav");
         Thread.sleep(2000);
-        Assertions.assertEquals("logged", client1.dequeueMessage());
+        Assertions.assertEquals("logged:gustav,0,0,0", client1.dequeueMessage());
     }
 
     @Test
@@ -51,7 +51,7 @@ public class ClientTest {
     public void TestCount() throws InterruptedException {
         client2.sendTCP("login:bcda,oskar");
         Thread.sleep(2000);
-        Assertions.assertEquals("logged", client2.dequeueMessage());
+        Assertions.assertEquals("logged:oskar,0,0,0", client2.dequeueMessage());
 
         for (int i = 0; i < 10; i++) {
             client2.sendTCP("count");

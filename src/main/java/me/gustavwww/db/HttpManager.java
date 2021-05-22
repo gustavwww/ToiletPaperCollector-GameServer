@@ -15,7 +15,8 @@ import java.util.Map;
 
 public class HttpManager {
 
-    private static final String BASE_URI = "http://128.199.63.222";
+    // http://128.199.63.222
+    private static final String BASE_URI = "http://localhost:3005";
 
     private static final HttpClient httpClient = HttpClient.newBuilder().version(HttpClient.Version.HTTP_2).build();
 

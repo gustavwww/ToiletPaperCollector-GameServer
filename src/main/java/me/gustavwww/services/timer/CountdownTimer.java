@@ -22,7 +22,6 @@ public class CountdownTimer extends TimerTask {
     @Override
     public void run() {
 
-        counter--;
         if (counter <= 0) {
             callback.callback();
             return;
@@ -31,6 +30,8 @@ public class CountdownTimer extends TimerTask {
         if (periodCallback != null) {
             periodCallback.callback(counter);
         }
+
+        counter--;
     }
 
 }
