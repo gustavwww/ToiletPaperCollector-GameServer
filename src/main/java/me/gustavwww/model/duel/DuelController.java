@@ -17,17 +17,30 @@ public class DuelController implements IDuelListener {
 
     public void joinDuel(Duel duel) {
         this.duel = duel;
-        this.duel.joinDuel(this);
+        this.duel.addAction(d -> {
+            d.joinDuel(this);
+        });
+    }
+
+    public void leaveDuel() {
+        if (duel == null) { return; }
+        duel.addAction(d -> {
+            d.leaveDuel(this);
+        });
     }
 
     public void readyUp() {
         if (duel == null) { return; }
-        duel.readyUp(this);
+        duel.addAction(d -> {
+            d.readyUp(this);
+        });
     }
 
     public void sendCount() {
         if (duel == null) { return; }
-        duel.sendCount(this);
+        duel.addAction(d -> {
+            d.sendCount(this);
+        });
     }
 
     @Override
@@ -47,6 +60,11 @@ public class DuelController implements IDuelListener {
     }
 
     @Override
+    public void userLeft(IUser user) {
+        clientController.sendTCP("duel:left," + user.getNickname());
+    }
+
+    @Override
     public void userReadyUp(IUser user) {
         clientController.sendTCP("duel:ready," + user.getNickname());
     }
@@ -61,8 +79,8 @@ public class DuelController implements IDuelListener {
         return user;
     }
 
-    public Duel getDuel() {
-        return duel;
+    public boolean hasActiveDuel() {
+        return duel != null;
     }
 
 }

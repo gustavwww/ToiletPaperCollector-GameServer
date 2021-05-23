@@ -4,7 +4,7 @@ import me.gustavwww.services.timer.CountdownTimer;
 
 import java.util.*;
 
-public class Duel {
+public class Duel implements Runnable {
 
     private static final int COUNTDOWN = 3;
     private static final int GAME_LENGTH = 15;
@@ -12,12 +12,25 @@ public class Duel {
     private final int clientCount;
     private final Map<IDuelListener, Integer> clients = Collections.synchronizedMap(new HashMap<>());
 
+    private final Queue<DuelAction> actionQueue = new LinkedList<>();
+
+    private boolean canClick = false;
     private boolean running = false;
     private boolean gameover = false;
-    private boolean canClick = false;
+
 
     public Duel(int clientCount) {
         this.clientCount = clientCount;
+    }
+
+    public synchronized void addAction(DuelAction action) {
+        actionQueue.add(action);
+    }
+
+    private void doAction() {
+        if (!actionQueue.isEmpty()) {
+            actionQueue.remove().doAction(this);
+        }
     }
 
     public void joinDuel(IDuelListener c) {
@@ -25,17 +38,32 @@ public class Duel {
         clients.put(c, null);
     }
 
-    public synchronized void readyUp(IDuelListener client) {
-        if (gameover || running) { return; }
+    public void leaveDuel(IDuelListener c) {
+        if (clients.containsKey(c)) {
+            informLeft(c);
+        }
+    }
+
+    public void readyUp(IDuelListener client) {
+        if (gameover || running || !clients.containsKey(client)) { return; }
         clients.put(client, 0);
         informReadyUp(client);
         checkAllReady();
     }
 
-    public synchronized void sendCount(IDuelListener client) {
+    public void sendCount(IDuelListener client) {
         if (gameover || !canClick) { return; }
         clients.put(client, clients.get(client) + 1);
         informCount(client);
+    }
+
+    @Override
+    public void run() {
+
+        while(!gameover) {
+            doAction();
+        }
+
     }
 
     private void checkAllReady() {
@@ -43,11 +71,9 @@ public class Duel {
             return;
         }
 
-        synchronized (clients) {
-            for (IDuelListener c : clients.keySet()) {
-                if (clients.get(c) == null) {
-                    return;
-                }
+        for (IDuelListener c : clients.keySet()) {
+            if (clients.get(c) == null) {
+                return;
             }
         }
 
@@ -129,21 +155,22 @@ public class Duel {
         }
     }
 
+    private void informLeft(IDuelListener client) {
+        for (IDuelListener c : clients.keySet()) {
+            c.userLeft(client.getUser());
+        }
+    }
+
     private void informReadyUp(IDuelListener client) {
-        synchronized (clients) {
-            for (IDuelListener c : clients.keySet()) {
-                c.userReadyUp(client.getUser());
-            }
+        for (IDuelListener c : clients.keySet()) {
+            c.userReadyUp(client.getUser());
         }
     }
 
     private void informCount(IDuelListener client) {
-        synchronized (clients) {
-            for (IDuelListener c : clients.keySet()) {
-                c.userCount(client.getUser(), clients.get(client));
-            }
+        for (IDuelListener c : clients.keySet()) {
+            c.userCount(client.getUser(), clients.get(client));
         }
     }
-
 
 }

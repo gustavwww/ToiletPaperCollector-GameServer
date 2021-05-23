@@ -18,7 +18,7 @@ public class MatchManager {
         listeners.remove(listener);
     }
 
-    public synchronized void dualRequest(IMatchListener sender, String nickname) {
+    public synchronized void duelRequest(IMatchListener sender, String nickname) {
         synchronized (listeners) {
             for (IMatchListener l : listeners) {
                 if (l.getUser().getNickname().equals(nickname)) {

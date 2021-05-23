@@ -32,7 +32,7 @@ public class ClientDuelHandler implements IMatchListener {
     }
 
     public void sendRequest(String nickname) {
-        if (duelController.getDuel() != null || request != null) {
+        if (duelController.hasActiveDuel() || request != null) {
             clientController.sendTCP(serverProtocol.writeError("Already in a duel or has a pending request."));
             return;
         }
@@ -41,7 +41,7 @@ public class ClientDuelHandler implements IMatchListener {
             return;
         }
 
-        matchManager.dualRequest(this, nickname);
+        matchManager.duelRequest(this, nickname);
     }
 
     public void acceptRequest() {

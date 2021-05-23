@@ -55,6 +55,7 @@ public class DuelRequest {
     private void finishRequest() {
         timer.cancel();
         Duel duel = new Duel(2);
+        new Thread(duel).start();
         synchronized (status) {
             for (IMatchListener l : status.keySet()) {
                 l.requestFinished(duel);
