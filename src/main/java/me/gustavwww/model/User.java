@@ -27,13 +27,18 @@ class User implements IUser {
 
     @Override
     public void increaseCount() {
-        increment += 2*(calculateLevel()-1) + 1;
+        int inc = 1;
+        if (getLevel() == 1) {
+            inc = 3;
+        }
+        amount += inc;
     }
 
-    private int calculateLevel() {
-        // y = 150(x-1)^2 + 100(x-1) + 1000
-        // x = -1/3 + sqrt(1/9 - (1000-y)/150) + 1
-        return (int) Math.abs(-1.0/3 + Math.sqrt(1.0/9 - (1000.0-amount)/150)) + 1;
+    private int getLevel() {
+        if (amount >= 700) {
+            return 1;
+        }
+        return 0;
     }
 
     @Override
