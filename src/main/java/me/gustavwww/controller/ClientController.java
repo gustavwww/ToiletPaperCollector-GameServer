@@ -128,7 +128,6 @@ public class ClientController implements Runnable {
 
             String input;
             while((input = reader.readLine()) != null) {
-                System.out.println("Got message: " + input);
                 Command cmd = protocol.parseMessage(input);
                 cmdManager.handleCommand(cmd);
             }
