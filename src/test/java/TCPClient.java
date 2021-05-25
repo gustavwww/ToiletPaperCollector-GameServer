@@ -51,4 +51,12 @@ public class TCPClient implements Runnable {
         return null;
     }
 
+    public void closeConnection() {
+        try {
+            socket.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

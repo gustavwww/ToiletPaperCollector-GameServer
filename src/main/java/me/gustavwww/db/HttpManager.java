@@ -16,7 +16,7 @@ import java.util.Map;
 public class HttpManager {
 
     // http://128.199.63.222
-    private static final String BASE_URI = "http://localhost:3005";
+    private static final String BASE_URI = "http://128.199.63.222";
 
     private static final HttpClient httpClient = HttpClient.newBuilder().version(HttpClient.Version.HTTP_2).build();
 
@@ -33,7 +33,7 @@ public class HttpManager {
         Map<String, Object> jsonObj = new Gson().fromJson(response.body(), new TypeToken<HashMap<String, Object>>(){}.getType());
 
         if (response.statusCode() == 200) {
-            return UserFactory.CreateUser(id, jsonObj.get("nickname").toString(), (int) jsonObj.get("coins"), (int) (double) jsonObj.get("weeklyAmount"), (int) (double) jsonObj.get("amount"));
+            return UserFactory.CreateUser(id, jsonObj.get("nickname").toString(), (int) (double) jsonObj.get("coins"), (int) (double) jsonObj.get("weeklyAmount"), (int) (double) jsonObj.get("amount"));
         }
 
         String errorMsg = "Bad Request";

@@ -101,8 +101,10 @@ public class ClientController implements Runnable {
 
         try {
             System.out.println("Client disconnected from server: " + client.getInetAddress().getHostAddress());
-            duelHandler.denyRequests();
-            duelHandler.getDuelController().leaveDuel();
+            if (duelHandler != null) {
+                duelHandler.denyRequests();
+                duelHandler.getDuelController().leaveDuel();
+            }
             postUser();
             client.close();
             serverController.removeConnection(this);
