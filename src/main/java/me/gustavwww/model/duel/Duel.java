@@ -59,11 +59,14 @@ public class Duel implements Runnable {
 
     @Override
     public void run() {
-
         while(!gameover) {
-            doAction();
+            try {
+                Thread.sleep(50);
+                doAction();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
-
     }
 
     private void checkAllReady() {
