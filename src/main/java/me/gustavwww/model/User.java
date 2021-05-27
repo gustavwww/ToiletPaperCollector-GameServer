@@ -31,7 +31,7 @@ class User implements IUser {
         if (getLevel() == 1) {
             inc = 3;
         }
-        amount += inc;
+        increment += inc;
     }
 
     private int getLevel() {
