@@ -36,26 +36,22 @@ public class ClientTest {
         Assertions.assertEquals("error:Invalid arguments.", client1.dequeueMessage());
 
 
-        client1.sendTCP("login:qwefdsa32");
+        client1.sendTCP("login:username,password");
         Thread.sleep(2000);
-        Assertions.assertEquals("error:User could not be found.", client1.dequeueMessage());
+        Assertions.assertEquals("error:Unauthorized", client1.dequeueMessage());
 
 
-        client1.sendTCP("login:abcd,gustav");
+        client1.sendTCP("login:kajshdb,kajshdb");
         Thread.sleep(2000);
-        Assertions.assertEquals("logged:gustav,0,0,0", client1.dequeueMessage());
+        Assertions.assertEquals("logged:kajshdb,0,0,0", client1.dequeueMessage());
     }
 
     @Test
     @Order(3)
     public void TestCount() throws InterruptedException {
-        client2.sendTCP("login:bcda,oskar");
+        client2.sendTCP("signup:dfghndfng,dfghndfng");
         Thread.sleep(2000);
-        Assertions.assertEquals("logged:oskar,0,0,0", client2.dequeueMessage());
-
-        for (int i = 0; i < 10; i++) {
-            client2.sendTCP("count");
-        }
+        Assertions.assertEquals("logged:dfghndfng,0,0,0", client2.dequeueMessage());
     }
 
 }

@@ -21,7 +21,7 @@ public class MatchManager {
     public synchronized void duelRequest(IMatchListener sender, String nickname) {
         synchronized (listeners) {
             for (IMatchListener l : listeners) {
-                if (l.getUser().getNickname().equals(nickname)) {
+                if (l.getUser().getUsername().equals(nickname)) {
                     DuelRequest request = new DuelRequest(sender, l);
                     l.gotRequest(request);
                     sender.gotRequest(request);

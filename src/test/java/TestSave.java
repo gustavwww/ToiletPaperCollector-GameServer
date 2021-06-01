@@ -22,10 +22,10 @@ public class TestSave {
     @Order(2)
     public void TestDisconnect() throws InterruptedException {
 
-        client1.sendTCP("login:555,gurk");
+        client1.sendTCP("login:asdvf,asdvf");
         Thread.sleep(2000);
 
-        Assertions.assertEquals("logged:gurk,0,0,0", client1.dequeueMessage());
+        Assertions.assertEquals("logged:asdvf,0,0,0", client1.dequeueMessage());
 
         client1.closeConnection();
         Thread.sleep(5000);
@@ -40,9 +40,9 @@ public class TestSave {
         Thread.sleep(5000);
         client1Relog.dequeueMessage();
 
-        client1Relog.sendTCP("login:555");
+        client1Relog.sendTCP("login:asdvf,asdvf");
         Thread.sleep(2000);
-        Assertions.assertEquals("logged:gurk,0,0,0", client1Relog.dequeueMessage());
+        Assertions.assertEquals("logged:asdvf,0,0,0", client1Relog.dequeueMessage());
 
     }
 

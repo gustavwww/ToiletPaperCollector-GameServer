@@ -41,29 +41,24 @@ public class ClientController implements Runnable {
         user.increaseCount();
     }
 
-    public void login(String id) throws IOException, InterruptedException {
-
+    public void login(String username, String password) throws IOException, InterruptedException {
         try {
-            this.user = UserFactory.CreateUser(id);
-            sendTCP("logged:" + user.getNickname() + "," + user.getCoins() + "," + user.getTotalAmount() + "," + user.getAmount());
+            this.user = UserFactory.CreateUserLogin(username, password);
+            sendTCP("logged:" + user.getUsername() + "," + user.getCoins() + "," + user.getTotalAmount() + "," + user.getAmount());
             setupDuelHandler(user);
         } catch (HttpManagerException e) {
             sendTCP(protocol.writeError(e.getMessage()));
         }
     }
 
-    public void signup(String id, String nickname) throws IOException, InterruptedException {
-        IUser user = UserFactory.CreateUser(id, nickname, 0, 0, 0);
-
+    public void signup(String username, String password) throws IOException, InterruptedException {
         try {
-            user.postUser();
-            this.user = user;
-            sendTCP("logged:" + user.getNickname() + "," + user.getCoins() + "," + user.getTotalAmount() + "," + user.getAmount());
+            this.user = UserFactory.CreateUserSignup(username, password);
+            sendTCP("logged:" + user.getUsername() + "," + user.getCoins() + "," + user.getTotalAmount() + "," + user.getAmount());
             setupDuelHandler(user);
         } catch (HttpManagerException e) {
             sendTCP(protocol.writeError(e.getMessage()));
         }
-
     }
 
     public void sendFacebookDetails(String f_id, String f_name) throws IOException, InterruptedException {
@@ -86,7 +81,7 @@ public class ClientController implements Runnable {
         if (user == null) { return; }
 
         try {
-            user.postUser();
+            user.postIncrement();
         } catch (HttpManagerException e) {
             sendTCP(protocol.writeError(e.getMessage()));
         }

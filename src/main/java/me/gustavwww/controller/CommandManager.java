@@ -20,13 +20,13 @@ class CommandManager {
 
     private void setupHandlers() {
         ICommandHandler loginHandler = new LoginHandler();
+        ICommandHandler signupHandler = new SignupHandler();
         ICommandHandler increaseHandler = new IncreaseHandler();
-        ICommandHandler setFacebookHandler = new SetFacebookHandler();
         ICommandHandler duelHandler = new DuelHandler();
 
-        loginHandler.setNext(increaseHandler);
-        increaseHandler.setNext(setFacebookHandler);
-        setFacebookHandler.setNext(duelHandler);
+        loginHandler.setNext(signupHandler);
+        signupHandler.setNext(increaseHandler);
+        increaseHandler.setNext(duelHandler);
 
         firstHandler = loginHandler;
     }

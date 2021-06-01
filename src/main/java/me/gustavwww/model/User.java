@@ -9,16 +9,16 @@ import java.util.Map;
 
 class User implements IUser {
 
-    private String id;
-    private String nickname;
-    private int coins;
-    private int amount;
-    private int totalAmount;
+    private final String id;
+    private final String username;
+    private final int coins;
+    private final int amount;
+    private final int totalAmount;
     private int increment;
 
-    User(String id, String nickname, int coins, int amount, int totalAmount) {
+    User(String id, String username, int coins, int amount, int totalAmount) {
         this.id = id;
-        this.nickname = nickname;
+        this.username = username;
         this.coins = coins;
         this.amount = amount;
         this.totalAmount = totalAmount;
@@ -47,8 +47,8 @@ class User implements IUser {
     }
 
     @Override
-    public String getNickname() {
-        return nickname;
+    public String getUsername() {
+        return username;
     }
 
     @Override
@@ -67,14 +67,12 @@ class User implements IUser {
     }
 
     @Override
-    public void postUser() throws HttpManagerException, IOException, InterruptedException {
+    public void postIncrement() throws HttpManagerException, IOException, InterruptedException {
 
         Map<String, Object> body = new HashMap<>();
-        body.put("id", id);
-        body.put("nickname", nickname);
         body.put("increment", increment);
 
-        HttpManager.sendPostRequest("/v1/users/", body);
+        HttpManager.sendPostRequest("/v1/users/" + id, body);
     }
 
 

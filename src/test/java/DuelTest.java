@@ -23,8 +23,8 @@ public class DuelTest {
         client1.dequeueMessage();
         client2.dequeueMessage();
 
-        client1.sendTCP("login:123,gustavw");
-        client2.sendTCP("login:321,oskarw");
+        client1.sendTCP("login:gustavw,gustavw");
+        client2.sendTCP("login:oskarw,oskarw");
 
         Thread.sleep(2000);
 

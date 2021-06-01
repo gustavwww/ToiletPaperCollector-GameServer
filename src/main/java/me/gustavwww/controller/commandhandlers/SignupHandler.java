@@ -4,10 +4,10 @@ import me.gustavwww.controller.ClientController;
 import me.gustavwww.services.protocol.Command;
 import me.gustavwww.services.protocol.IServerProtocol;
 
-public class LoginHandler extends AbstractCommandHandler {
+public class SignupHandler extends AbstractCommandHandler {
 
-    public LoginHandler() {
-        super("login");
+    public SignupHandler() {
+        super("signup");
     }
 
     @Override
@@ -23,11 +23,11 @@ public class LoginHandler extends AbstractCommandHandler {
         String password = args[1];
 
         try {
-            client.login(username, password);
+            client.signup(username, password);
         } catch (Exception e) {
-            e.printStackTrace();
             client.sendTCP(protocol.writeError(e.getMessage()));
         }
 
     }
+
 }

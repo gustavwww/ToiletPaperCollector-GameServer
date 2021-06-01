@@ -36,7 +36,7 @@ public class ClientDuelHandler implements IMatchListener {
             clientController.sendTCP(serverProtocol.writeError("Already in a duel or has a pending request."));
             return;
         }
-        if (nickname.equals(user.getNickname())) {
+        if (nickname.equals(user.getUsername())) {
             clientController.sendTCP(serverProtocol.writeError("Can't send request to yourself."));
             return;
         }
@@ -60,7 +60,7 @@ public class ClientDuelHandler implements IMatchListener {
     public void gotRequest(DuelRequest request) {
         this.request = request;
         if (!request.getSender().equals(this)) {
-            clientController.sendTCP("duel:request," + request.getSender().getUser().getNickname());
+            clientController.sendTCP("duel:request," + request.getSender().getUser().getUsername());
         }
     }
 

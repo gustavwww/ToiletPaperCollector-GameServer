@@ -6,11 +6,11 @@ import java.io.IOException;
 
 public interface IUser {
     String getId();
-    String getNickname();
+    String getUsername();
     int getCoins();
     int getAmount();
     int getTotalAmount();
 
     void increaseCount();
-    void postUser() throws HttpManagerException, IOException, InterruptedException;
+    void postIncrement() throws HttpManagerException, IOException, InterruptedException;
 }

@@ -16,35 +16,33 @@ import java.util.Map;
 public class HttpManager {
 
     // http://128.199.63.222
-    private static final String BASE_URI = "http://128.199.63.222";
+    private static final String BASE_URI = "http://localhost:3005";
 
     private static final HttpClient httpClient = HttpClient.newBuilder().version(HttpClient.Version.HTTP_2).build();
 
-    public synchronized static IUser getUser(String id) throws HttpManagerException, IOException, InterruptedException {
+    public synchronized static IUser getUserLogin(String username, String password) throws HttpManagerException, IOException, InterruptedException {
 
-        HttpRequest request = HttpRequest.newBuilder()
-                .GET()
-                .uri(URI.create(BASE_URI + "/v1/users/" + id))
-                .setHeader("Content-Type", "application/json")
-                .build();
+        Map<String, Object> body = new HashMap<>();
+        body.put("username", username);
+        body.put("password", password);
 
-        HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+        Map<String, Object> response = sendPostRequest("/v1/users/login", body);
 
-        Map<String, Object> jsonObj = new Gson().fromJson(response.body(), new TypeToken<HashMap<String, Object>>(){}.getType());
-
-        if (response.statusCode() == 200) {
-            return UserFactory.CreateUser(id, jsonObj.get("nickname").toString(), (int) (double) jsonObj.get("coins"), (int) (double) jsonObj.get("weeklyAmount"), (int) (double) jsonObj.get("amount"));
-        }
-
-        String errorMsg = "Bad Request";
-        if (jsonObj.get("error") != null) {
-            errorMsg = jsonObj.get("error").toString();
-        }
-
-        throw new HttpManagerException(errorMsg, response.statusCode());
+        return UserFactory.CreateUser(response.get("id").toString(), response.get("username").toString(), (int) (double) response.get("coins"), (int) (double) response.get("weeklyAmount"), (int) (double) response.get("amount"));
     }
 
-    public synchronized static void sendPostRequest(String URI_EXT, Map<String, Object> body) throws HttpManagerException, IOException, InterruptedException {
+    public synchronized static IUser getUserSignup(String username, String password) throws HttpManagerException, IOException, InterruptedException {
+
+        Map<String, Object> body = new HashMap<>();
+        body.put("username", username);
+        body.put("password", password);
+
+        Map<String, Object> response = sendPostRequest("/v1/users/create", body);
+
+        return UserFactory.CreateUser(response.get("id").toString(), response.get("username").toString(), (int) (double) response.get("coins"), (int) (double) response.get("weeklyAmount"), (int) (double) response.get("amount"));
+    }
+
+    public synchronized static Map<String, Object> sendPostRequest(String URI_EXT, Map<String, Object> body) throws HttpManagerException, IOException, InterruptedException {
 
         String jsonString = new Gson().toJson(body);
 
@@ -55,6 +53,10 @@ public class HttpManager {
                 .build();
 
         HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+        if (response.statusCode() == 401) {
+            throw new HttpManagerException("Unauthorized", response.statusCode());
+        }
+
         Map<String, Object> jsonObj = new Gson().fromJson(response.body(), new TypeToken<HashMap<String, Object>>(){}.getType());
 
         if (!(response.statusCode() == 200)) {
@@ -67,6 +69,7 @@ public class HttpManager {
             throw new HttpManagerException(errorMsg, response.statusCode());
         }
 
+        return jsonObj;
     }
 
 }

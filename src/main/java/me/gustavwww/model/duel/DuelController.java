@@ -51,7 +51,7 @@ public class DuelController implements IDuelListener {
     @Override
     public void gameEnded(IUser winner) {
         this.duel = null;
-        clientController.sendTCP("duel:ended," + winner.getNickname());
+        clientController.sendTCP("duel:ended," + winner.getUsername());
     }
 
     @Override
@@ -61,17 +61,17 @@ public class DuelController implements IDuelListener {
 
     @Override
     public void userLeft(IUser user) {
-        clientController.sendTCP("duel:left," + user.getNickname());
+        clientController.sendTCP("duel:left," + user.getUsername());
     }
 
     @Override
     public void userReadyUp(IUser user) {
-        clientController.sendTCP("duel:ready," + user.getNickname());
+        clientController.sendTCP("duel:ready," + user.getUsername());
     }
 
     @Override
     public void userCount(IUser user, int count) {
-        clientController.sendTCP("duel:count," + user.getNickname() + "," + count);
+        clientController.sendTCP("duel:count," + user.getUsername() + "," + count);
     }
 
     @Override
