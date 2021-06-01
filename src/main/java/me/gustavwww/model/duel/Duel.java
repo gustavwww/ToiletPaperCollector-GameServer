@@ -10,7 +10,8 @@ public class Duel implements Runnable {
     private static final int GAME_LENGTH = 15;
 
     private final int clientCount;
-    private final Map<IDuelListener, Integer> clients = Collections.synchronizedMap(new HashMap<>());
+    private final Map<IDuelListener, Integer> clients = new HashMap<>();
+    private final List<IDuelListener> timerClientList = new ArrayList<>();
 
     private final Queue<DuelAction> actionQueue = new LinkedList<>();
 
@@ -36,6 +37,7 @@ public class Duel implements Runnable {
     public void joinDuel(IDuelListener c) {
         if (clients.size() >= clientCount || gameover || running) { return; }
         clients.put(c, null);
+        timerClientList.add(c);
     }
 
     public void leaveDuel(IDuelListener c) {
@@ -135,26 +137,20 @@ public class Duel implements Runnable {
     }
 
     private void informTimerUpdate(String timerType, int counter) {
-        synchronized (clients) {
-            for (IDuelListener c : clients.keySet()) {
-                c.countTimerUpdated(timerType, counter);
-            }
+        for (IDuelListener c : timerClientList) {
+            c.countTimerUpdated(timerType, counter);
         }
     }
 
     private void informStarted() {
-        synchronized (clients) {
-            for (IDuelListener c : clients.keySet()) {
-                c.gameStarted();
-            }
+        for (IDuelListener c : timerClientList) {
+            c.gameStarted();
         }
     }
 
     private void informEnded(IDuelListener winner) {
-        synchronized (clients) {
-            for (IDuelListener c : clients.keySet()) {
-                c.gameEnded(winner.getUser());
-            }
+        for (IDuelListener c : timerClientList) {
+            c.gameEnded(winner.getUser());
         }
     }
 
