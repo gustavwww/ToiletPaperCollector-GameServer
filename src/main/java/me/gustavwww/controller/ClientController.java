@@ -77,6 +77,26 @@ public class ClientController implements Runnable {
 
     }
 
+    public void buySkin(String name) throws IOException, InterruptedException {
+        if (user == null) { return; }
+
+        try {
+            user.buySkin(name);
+        } catch (HttpManagerException e) {
+            sendTCP(protocol.writeError(e.getMessage()));
+        }
+    }
+
+    public void equipSkin(String name) throws IOException, InterruptedException {
+        if (user == null) { return; }
+
+        try {
+            user.equipSkin(name);
+        } catch (HttpManagerException e) {
+            sendTCP(protocol.writeError(e.getMessage()));
+        }
+    }
+
     private void postUser() throws IOException, InterruptedException {
         if (user == null) { return; }
 

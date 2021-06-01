@@ -76,6 +76,7 @@ class User implements IUser {
         return totalAmount;
     }
 
+    @Override
     public void update() throws InterruptedException, IOException, HttpManagerException {
 
         Map<String, Object> response = HttpManager.sendGetRequest("/v1/users/" + id);
@@ -96,6 +97,26 @@ class User implements IUser {
         body.put("increment", increment);
 
         HttpManager.sendPostRequest("/v1/users/" + id, body);
+    }
+
+    @Override
+    public void buySkin(String name) throws HttpManagerException, IOException, InterruptedException {
+
+        Map<String, Object> body = new HashMap<>();
+        body.put("skin", name);
+
+        Map<String, Object> response = HttpManager.sendPostRequest("/v1/users/" + id + "/skin/buy", body);
+        this.skins = (List<String>) response.get("skins");
+    }
+
+    @Override
+    public void equipSkin(String name) throws HttpManagerException, IOException, InterruptedException {
+
+        Map<String, Object> body = new HashMap<>();
+        body.put("skin", name);
+
+        Map<String, Object> response = HttpManager.sendPostRequest("/v1/users/" + id + "/skin/equip", body);
+        this.equippedSkin = (String) response.get("equipped");
     }
 
 

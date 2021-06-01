@@ -23,10 +23,12 @@ class CommandManager {
         ICommandHandler signupHandler = new SignupHandler();
         ICommandHandler increaseHandler = new IncreaseHandler();
         ICommandHandler duelHandler = new DuelHandler();
+        ICommandHandler skinHandler = new SkinHandler();
 
         loginHandler.setNext(signupHandler);
         signupHandler.setNext(increaseHandler);
         increaseHandler.setNext(duelHandler);
+        duelHandler.setNext(skinHandler);
 
         firstHandler = loginHandler;
     }

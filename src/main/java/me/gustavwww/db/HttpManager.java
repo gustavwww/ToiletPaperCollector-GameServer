@@ -12,6 +12,7 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class HttpManager {
@@ -31,7 +32,7 @@ public class HttpManager {
 
         Map<String, Object> skinObj = (Map<String, Object>) response.get("skins");
 
-        return UserFactory.CreateUser(response.get("id").toString(), response.get("username").toString(), (int) (double) response.get("coins"), (int) (double) response.get("weeklyAmount"), (int) (double) response.get("amount"), (ArrayList<String>) skinObj.get("owned"), (String) skinObj.get("equippedSkin"));
+        return UserFactory.CreateUser(response.get("id").toString(), response.get("username").toString(), (int) (double) response.get("coins"), (int) (double) response.get("weeklyAmount"), (int) (double) response.get("amount"), (List<String>) skinObj.get("owned"), (String) skinObj.get("equippedSkin"));
     }
 
     public synchronized static IUser getUserSignup(String username, String password) throws HttpManagerException, IOException, InterruptedException {
@@ -44,7 +45,7 @@ public class HttpManager {
 
         Map<String, Object> skinObj = (Map<String, Object>) response.get("skins");
 
-        return UserFactory.CreateUser(response.get("id").toString(), response.get("username").toString(), (int) (double) response.get("coins"), (int) (double) response.get("weeklyAmount"), (int) (double) response.get("amount"), (ArrayList<String>) skinObj.get("owned"), (String) skinObj.get("equippedSkin"));
+        return UserFactory.CreateUser(response.get("id").toString(), response.get("username").toString(), (int) (double) response.get("coins"), (int) (double) response.get("weeklyAmount"), (int) (double) response.get("amount"), (List<String>) skinObj.get("owned"), (String) skinObj.get("equippedSkin"));
     }
 
     public synchronized static Map<String, Object> sendGetRequest(String URI_EXT) throws HttpManagerException, IOException, InterruptedException {
