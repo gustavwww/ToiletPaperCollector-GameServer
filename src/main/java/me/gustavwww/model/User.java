@@ -107,6 +107,7 @@ class User implements IUser {
 
         Map<String, Object> response = HttpManager.sendPostRequest("/v1/users/" + id + "/skin/buy", body);
         this.skins = (List<String>) response.get("skins");
+        this.coins = (int) (double) response.get("coins");
     }
 
     @Override

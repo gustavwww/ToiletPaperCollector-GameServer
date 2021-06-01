@@ -82,6 +82,7 @@ public class ClientController implements Runnable {
 
         try {
             user.buySkin(name);
+            sendTCP("skin:purchased");
         } catch (HttpManagerException e) {
             sendTCP(protocol.writeError(e.getMessage()));
         }
@@ -92,6 +93,7 @@ public class ClientController implements Runnable {
 
         try {
             user.equipSkin(name);
+            sendTCP("skin:equipped");
         } catch (HttpManagerException e) {
             sendTCP(protocol.writeError(e.getMessage()));
         }

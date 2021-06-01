@@ -25,7 +25,6 @@ public class LoginHandler extends AbstractCommandHandler {
         try {
             client.login(username, password);
         } catch (Exception e) {
-            e.printStackTrace();
             client.sendTCP(protocol.writeError(e.getMessage()));
         }
 

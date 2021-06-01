@@ -49,7 +49,7 @@ public class ClientTest {
     @Test
     @Order(3)
     public void TestCount() throws InterruptedException {
-        client2.sendTCP("signup:dfghndfng,dfghndfng");
+        client2.sendTCP("login:dfghndfng,dfghndfng");
         Thread.sleep(2000);
         Assertions.assertEquals("logged:dfghndfng,0,0,0", client2.dequeueMessage());
     }
